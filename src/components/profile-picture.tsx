@@ -27,7 +27,7 @@ const ProfilePicture = ({}) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
-          <AvatarImage src={session?.user.image} />
+          <AvatarImage src={session?.user.image || ""} />
           <AvatarFallback>{session?.user.name}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
