@@ -27,7 +27,7 @@ const ProfilePicture = ({}) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
-          <AvatarImage src={session?.user.image || ""} />
+          <AvatarImage src={session?.user.image} />
           <AvatarFallback>{session?.user.name}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -36,7 +36,8 @@ const ProfilePicture = ({}) => {
           <Icons.Settings className="mr-2 h-4 w-4" />
           <span>Settings</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={void handleLogout}>
+        (
+        <DropdownMenuItem onClick={() => void handleLogout()}>
           <Icons.LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>
