@@ -18,7 +18,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        className={`min-h-screen bg-slate-50 antialiased dark:bg-slate-900 ${inter.className}`}
+        className={`min-h-screen bg-slate-50 text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50 ${inter.className}`}
       >
         <NavBar />
         {children}
