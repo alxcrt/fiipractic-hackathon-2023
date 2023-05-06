@@ -38,7 +38,7 @@ const Profile: FC = () => {
         const parsedDocument = parser.parseFromString(body, "text/html");
         const search = parsedDocument.getElementsByClassName('d-flex flex-wrap p-3')[0]
         const achievements2 = [].slice.call(
-          search.getElementsByClassName("achievement-badge-card")
+          search?.getElementsByClassName("achievement-badge-card")
         );
 
         const achievements3: Achievement[] = []
