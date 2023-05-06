@@ -18,7 +18,6 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <SessionProvider session={session}>
         <Layout>
           <Component {...pageProps} />
-
         </Layout>
       </SessionProvider>
     </ThemeProvider>

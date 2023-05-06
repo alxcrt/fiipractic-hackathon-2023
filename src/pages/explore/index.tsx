@@ -1,5 +1,6 @@
 import { Link } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import type { FC } from "react";
 import { DashboardHeader } from "~/components/header";
 import { Button } from "~/components/ui/button";
@@ -11,21 +12,24 @@ const availableTests = [
     name: "HR Test",
     description: "A test to see if you're a good fit for the company.",
     image: "/hrr.webp",
+    link: "/game1",
   },
   {
     name: "Coding Test",
     description: "A test to see if you're a good fit for the company.",
     image: "/coding.webp",
+    link: "/selectLanguage",
   },
-  {
-    name: "Personality Test",
-    description: "A test to see if you're a good fit for the company.",
-    image: "/personality.jpg",
-  },
+  // {
+  //   name: "Personality Test",
+  //   description: "A test to see if you're a good fit for the company.",
+  //   image: "/personality.jpg",
+  // },
 ];
 
 const Explore: FC = ({}) => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   if (!session) {
     return null;
@@ -67,7 +71,7 @@ const Explore: FC = ({}) => {
                     <img src={test.image} alt="" />
                   </div>
 
-                  <Button>
+                  <Button onClick={() => void router.push(test.link)}>
                     <span>Take Test</span>
                   </Button>
                 </div>

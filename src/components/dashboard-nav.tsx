@@ -2,6 +2,8 @@ import Link from "next/link";
 import Icons from "./icons";
 import { usePathname } from "next/navigation";
 import { cn } from "~/lib/utils";
+import { useSession } from "next-auth/react";
+import { UserRole } from "@prisma/client";
 
 interface DashboardNavProps {
   items: {
@@ -14,6 +16,7 @@ interface DashboardNavProps {
 
 export function DashboardNav({ items }: DashboardNavProps) {
   const path = usePathname();
+  const { data: session } = useSession();
 
   if (!items?.length) {
     return null;
@@ -23,6 +26,13 @@ export function DashboardNav({ items }: DashboardNavProps) {
     <nav className="grid items-start gap-2">
       {items.map((item) => {
         const isActive = path === item.href;
+
+        if (
+          session?.user.role !== UserRole.RECRUITER &&
+          item.href === "/explore/leaderboard"
+        ) {
+          return null;
+        }
 
         return (
           <Link
