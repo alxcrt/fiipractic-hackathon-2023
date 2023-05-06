@@ -4,6 +4,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "~/utils/api";
 import { Button } from "~/components/ui/button";
+import Image from "next/image";
+import Script from "next/script";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -12,19 +14,38 @@ const Home: NextPage = () => {
     <>
       <main className="flex flex-col items-center justify-center">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-black dark:text-white sm:text-[5rem]">
-            <span className="text-[hsl(65,43%,51%)] dark:text-[hsl(63,100%,70%)]">
-              FII Practic
-            </span>{" "}
-            Hackathon
+          <h1 className="text-5xl font-extrabold tracking-tight text-black dark:text-white ">
+            Get <span>proof of competence</span> before you hire
           </h1>
 
-          <div className="flex flex-col items-center gap-2">
+          <p>
+            {`A skills assessment platform that gives hiring teams incredible
+            insight into candidates' job-specific skills. So you find and
+            shortlist quality talent, real fast! `}
+          </p>
+
+          <Button>
+            <span>Get Started</span>
+          </Button>
+
+          <Image
+            className="rounded-xl"
+            src="/hero2.webp"
+            alt="Rocket"
+            width={1920}
+            height={1080}
+          />
+
+          {/* <Button>
+            <span>Get Started</span>
+          </Button> */}
+
+          {/* <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-black dark:text-white">
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </p>
             <AuthShowcase />
-          </div>
+          </div> */}
         </div>
       </main>
     </>

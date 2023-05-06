@@ -1,10 +1,10 @@
 import { Link } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { FC, useEffect, useState } from "react";
+import GithubRepos from "~/components/github_repos";
 import Icons from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { Card } from "~/components/ui/card";
-import GithubRepos from "./github_repos";
 
 interface Achievement {
   src: string;
@@ -23,9 +23,7 @@ const Profile: FC = () => {
   const { data: session } = useSession();
   const [achievements, setAchievements] = useState<Achievement[]>([]);
 
-  async function getUserAchievements(
-    imageString: string
-  ): Promise<void> {
+  async function getUserAchievements(imageString: string): Promise<void> {
     const userNumberId = imageString.substring(
       imageString.indexOf("/u/") + 3,
       imageString.indexOf("?v")
@@ -38,23 +36,25 @@ const Profile: FC = () => {
     const response = await fetch(link, { method: "GET" });
 
     if (response.ok) {
-      const data = await (response.json()) as UserData;
-      const newLink = `https://github.com/${data.login}?tab=achievements`
-      const response2 = await fetch(newLink, { method: "GET", mode: 'cors' });
+      const data = (await response.json()) as UserData;
+      const newLink = `https://github.com/${data.login}?tab=achievements`;
+      const response2 = await fetch(newLink, { method: "GET", mode: "cors" });
       if (response2.ok) {
-        const body = await response2.text()
+        const body = await response2.text();
         const parser = new DOMParser();
         const parsedDocument = parser.parseFromString(body, "text/html");
-        const search = parsedDocument.getElementsByClassName('d-flex flex-wrap p-3')[0]
+        const search = parsedDocument.getElementsByClassName(
+          "d-flex flex-wrap p-3"
+        )[0];
         const achievements2 = [].slice.call(
           search?.getElementsByClassName("achievement-badge-card")
         );
 
-        const achievements3: Achievement[] = []
+        const achievements3: Achievement[] = [];
         achievements2.forEach((res: AchievementData) => {
           achievements3.push({
             src: res.src,
-            alt: res.alt
+            alt: res.alt,
           });
         });
 
@@ -70,7 +70,6 @@ const Profile: FC = () => {
       });
     }
   }, [session]);
-
 
   return (
     <section className="flex flex-col items-center gap-10 p-6">
@@ -93,9 +92,7 @@ const Profile: FC = () => {
 
             <div>
               <p className="font-medium text-gray-400">Welcome back,</p>
-              <p
-                className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-2xl font-bold text-transparent"
-              >
+              <p className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-2xl font-bold text-transparent">
                 {session?.user.name}
               </p>
               <p className="font-medium text-gray-400">You look nice today!</p>
@@ -116,27 +113,23 @@ const Profile: FC = () => {
       </Card>
 
       <Card>
-        <div className="justify-between max-w-md  border-gray-200 p-2 dark:border-gray-700 ">
-
-          <p className="font-medium text-gray-400 align-middle">
-            {session ? 'Github Achievements' : ''}
+        <div className="max-w-md justify-between  border-gray-200 p-2 dark:border-gray-700 ">
+          <p className="align-middle font-medium text-gray-400">
+            {session ? "Github Achievements" : ""}
           </p>
-
         </div>
         {achievements.map((item) => (
-          <div className="flex justify-start items-center" key={item.src}>
+          <div className="flex items-center justify-start" key={item.src}>
             <img
-              className="inline-flex aspect-square w-7 rounded-full bg-gray-600 m-2"
+              className="m-2 inline-flex aspect-square w-7 rounded-full bg-gray-600"
               src={item.src || ""}
               alt=""
             />
-            <p
-              className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-lg font-bold text-transparent p-2"
-            >
-              {item.alt || ''}
+            <p className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text p-2 text-lg font-bold text-transparent">
+              {item.alt || ""}
             </p>
-
-          </div>))}
+          </div>
+        ))}
       </Card>
       <GithubRepos />
 
@@ -179,7 +172,7 @@ const Profile: FC = () => {
           </div>
         </div>
       </Card> */}
-    </section >
+    </section>
   );
 };
 
