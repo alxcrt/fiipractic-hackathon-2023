@@ -12,7 +12,10 @@ interface Achievement {
 
 interface UserData {
   login: string;
-  // other properties...
+}
+interface AchievementData {
+  src: string;
+  alt: string;
 }
 
 const Profile: FC = () => {
@@ -47,7 +50,7 @@ const Profile: FC = () => {
         );
 
         const achievements3: Achievement[] = []
-        achievements2.forEach((res) => {
+        achievements2.forEach((res : AchievementData) => {
           achievements3.push({
             src: res.src,
             alt: res.alt
