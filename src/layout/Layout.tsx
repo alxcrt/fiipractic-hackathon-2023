@@ -21,7 +21,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         className={`min-h-screen bg-slate-50 text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50 ${inter.className}`}
       >
         <NavBar />
-        {children}
+        <div className="container pt-20">{children}</div>
       </div>
     </>
   );
