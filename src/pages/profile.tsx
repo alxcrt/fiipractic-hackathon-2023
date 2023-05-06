@@ -10,6 +10,11 @@ interface Achievement {
   alt: string;
 }
 
+interface UserData {
+  login: string;
+  // other properties...
+}
+
 const Profile: FC = () => {
   const { data: session } = useSession();
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -29,7 +34,7 @@ const Profile: FC = () => {
     const response = await fetch(link, { method: "GET" });
 
     if (response.ok) {
-      const data = await response.json();
+      const data = await (response.json()) as UserData;
       const newLink = `https://github.com/${data.login}?tab=achievements`
       const response2 = await fetch(newLink, { method: "GET", mode: 'cors' });
       if (response2.ok) {
