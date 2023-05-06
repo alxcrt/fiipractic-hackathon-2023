@@ -1,0 +1,9 @@
+.code-block {
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 3px;
+    display: block;
+    font-family: 'Consolas', 'Monaco', 'Courier New', 'monospace';
+    overflow-wrap: break-word;
+    /* Add this property */
+}
