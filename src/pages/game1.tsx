@@ -58,7 +58,7 @@ const Game: FC = ({}) => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
+    <main className="mt-10 flex flex-col items-center justify-center">
       {/* <div>Game</div> */}
 
       <div className="relative border-4">

@@ -3,8 +3,10 @@ import { useSession } from "next-auth/react";
 import { FC, useEffect, useState } from "react";
 import GithubRepos from "~/components/github_repos";
 import Icons from "~/components/icons";
+import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card } from "~/components/ui/card";
+import { Progress } from "~/components/ui/progress";
 
 interface Achievement {
   src: string;
@@ -73,20 +75,23 @@ const Profile: FC = () => {
 
   return (
     <section className="flex flex-col items-center gap-10 p-6">
-      <Card className="w-[600px] dark:bg-gray-800">
+      <Card className="relative w-[600px] pb-10 dark:bg-gray-800">
         <div className="flex flex-row items-center justify-between  border-gray-200 p-6 dark:border-gray-700 ">
           {/* <CardTitle>Notifications</CardTitle>
           <CardDescription>You have 3 unread messages.</CardDescription> */}
 
           <div className="flex">
-            <div className="relative mr-4 h-20 w-20">
+            <div className="relative mr-4 h-[100px] w-[100px]">
               <img
                 className="inline-flex aspect-square h-full w-full overflow-hidden rounded-full bg-gray-600"
                 src={session?.user.image || ""}
                 alt=""
               />
-              <div className="animate-fade-in absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full  bg-gray-200 text-xs ring-4 ring-white dark:bg-gray-700 dark:ring-gray-800">
+              <div className="animate-fade-in absolute bottom-0 left-0 flex h-6 w-6 items-center justify-center rounded-full  bg-gray-200 text-xs ring-4 ring-white dark:bg-gray-700 dark:ring-gray-800">
                 <Icons.Github className="h-4 w-4 stroke-current dark:text-white" />
+              </div>
+              <div className=" absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full  ">
+                <Badge className=" text-sm">Lvl.69</Badge>
               </div>
             </div>
 
@@ -101,11 +106,27 @@ const Profile: FC = () => {
 
           <div className="flex flex-col gap-2">
             <a href="../explore/billing">
-            <Button>
-              <Icons.Newspaper className="mr-2 h-4 w-4" />
-              <span>Subscriptions</span>
-            </Button>
+              <Button>
+                <Icons.Newspaper className="mr-2 h-4 w-4" />
+                <span>Subscriptions</span>
+              </Button>
             </a>
+          </div>
+        </div>
+
+        <div className=" mx-auto mt-2 w-[80%]">
+          <Progress value={90}></Progress>
+          <div className=" bottom-0 left-0 mt-1 flex w-full justify-between">
+            <span>7</span>
+            <span>8</span>
+          </div>
+          <div className="mt-2 flex justify-between">
+            <div>
+              <span className="font-bold">XP 768</span>/800
+            </div>
+            <div>
+              <span className="font-bold">32 XP</span> to next level
+            </div>
           </div>
         </div>
       </Card>
