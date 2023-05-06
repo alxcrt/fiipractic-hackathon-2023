@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from "react";
 import Icons from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { Card } from "~/components/ui/card";
+import GithubRepos from "./github_repos";
 
 interface Achievement {
   src: string;
@@ -50,7 +51,7 @@ const Profile: FC = () => {
         );
 
         const achievements3: Achievement[] = []
-        achievements2.forEach((res : AchievementData) => {
+        achievements2.forEach((res: AchievementData) => {
           achievements3.push({
             src: res.src,
             alt: res.alt
@@ -137,6 +138,7 @@ const Profile: FC = () => {
 
           </div>))}
       </Card>
+      <GithubRepos />
 
       {/* <Card className="w-[600px] dark:bg-gray-800">
         <div className="flex flex-row items-center justify-between  border-gray-200 p-6 dark:border-gray-700 ">
