@@ -6,6 +6,8 @@ const Game: FC = ({}) => {
   const [pumps, setPumps] = useState<number>(0);
   const [popAfter, setPopAfter] = useState<number>(0);
   const [curentScore, setCurrentScore] = useState<number>(0);
+  const [baloons, setBaloons] = useState<number>(39);
+  const [currentBaloons, setCurrentBaloons] = useState<number>(-1);
 
   const [score, setScore] = useState<number>(0);
 
@@ -52,6 +54,7 @@ const Game: FC = ({}) => {
     setPumps(0);
     setCurrentScore(0);
     setPopAfter(Math.floor(Math.random() * 10) + 1);
+    setCurrentBaloons(currentBaloons + 1);
   };
 
   return (
@@ -74,6 +77,14 @@ const Game: FC = ({}) => {
           <div className="text-5xl font-bold text-[#BBBEBB]">{`$${curentScore.toFixed(
             2
           )}`}</div>
+        </div>
+
+        {/* Balloons Left */}
+        <div className="pointer-events-none absolute right-5 top-5">
+          <div className="text-2xl font-bold text-[#BBBEBB]">Balloons Left</div>
+          <div className="text-5xl font-bold text-[#BBBEBB]">
+            {`${currentBaloons} / ${baloons}`}
+          </div>
         </div>
 
         {/* Pump and Collect */}
