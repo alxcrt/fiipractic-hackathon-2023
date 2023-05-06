@@ -10,13 +10,6 @@ const GithubRepos: FC = () => {
     link: string;
   }
 
-  interface RepoModel {
-    title: string;
-    lang: string;
-    color: string;
-    link: string;
-  }
-
   interface UserData {
     login: string;
   }
@@ -32,6 +25,47 @@ const GithubRepos: FC = () => {
     await getUserReposExtra(userNumberId);
   }
 
+  function getRepos(class1: string, class2: string, parsedDocument: Document) {
+    const search = parsedDocument.getElementsByClassName(class1)[0];
+    const repos2 = Array.from(
+      search?.getElementsByClassName("pinned-item-list-item-content") || []
+    );
+    const repos3: Repo[] = [];
+
+    repos2.forEach((item: Element) => {
+      let link = "";
+      if (
+        item.getElementsByClassName(class2) != undefined
+      ) {
+        link = (
+          item?.getElementsByClassName(class2)[0].children[0] as HTMLAnchorElement
+        ).href;
+        link = `https://github.com/\${link.substring(link.indexOf(data.login), link.length)}`;
+      }
+      const color: string = (
+        item.getElementsByClassName("repo-language-color")[0] as HTMLElement
+      ).style.backgroundColor;
+      const title: string =
+        (item.getElementsByClassName("repo")[0] as HTMLElement).title ?? "";
+      let lang = "";
+      if (item.getElementsByClassName("d-inline-block mr-3") != undefined) {
+        lang =
+          (
+            item.getElementsByClassName("d-inline-block mr-3")[0]
+              .children[1] as HTMLElement
+          ).textContent ?? "";
+      }
+
+      repos3.push({
+        title: title,
+        lang: lang,
+        color: color,
+        link: link,
+      });
+    });
+    return repos3
+  }
+
   async function getUserReposExtra(userNumberId: string): Promise<void> {
     const link = `https://api.github.com/user/${userNumberId}`;
     const response = await fetch(link, { method: "GET" });
@@ -44,49 +78,11 @@ const GithubRepos: FC = () => {
         const body = await response2.text();
         const parser = new DOMParser();
         const parsedDocument = parser.parseFromString(body, "text/html");
-        const search = parsedDocument.getElementsByClassName(
-          "d-flex flex-wrap list-style-none gutter-condensed mb-4"
-        )[0];
-        const repos2 = Array.from(
-          search?.getElementsByClassName("pinned-item-list-item-content") || []
-        );
-        const repos3: Repo[] = [];
+        let repos3 = getRepos('d-flex flex-wrap list-style-none gutter-condensed mb-4', 'd-flex width-full flex-items-center position-relative', parsedDocument)
 
-        repos2.forEach((item: Element) => {
-          let link = "";
-          if (
-            item.getElementsByClassName(
-              "d-flex width-full flex-items-center position-relative"
-            ) != undefined
-          ) {
-            link = (
-              item?.getElementsByClassName(
-                "d-flex width-full flex-items-center position-relative"
-              )[0].children[0] as HTMLAnchorElement
-            ).href;
-            link = `https://github.com/\${link.substring(link.indexOf(data.login), link.length)}`;
-          }
-          const color: string = (
-            item.getElementsByClassName("repo-language-color")[0] as HTMLElement
-          ).style.backgroundColor;
-          const title: string =
-            (item.getElementsByClassName("repo")[0] as HTMLElement).title ?? "";
-          let lang = "";
-          if (item.getElementsByClassName("d-inline-block mr-3") != undefined) {
-            lang =
-              (
-                item.getElementsByClassName("d-inline-block mr-3")[0]
-                  .children[1] as HTMLElement
-              ).textContent ?? "";
-          }
-
-          repos3.push({
-            title: title,
-            lang: lang,
-            color: color,
-            link: link,
-          });
-        });
+        if (repos3.length == 0){
+          repos3 = getRepos('d-flex flex-wrap list-style-none gutter-condensed mb-4', 'd-flex width-full flex-items-center position-relative', parsedDocument)
+        }
 
         setRepos(repos3);
       }

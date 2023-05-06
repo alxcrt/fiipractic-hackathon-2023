@@ -100,14 +100,12 @@ const Profile: FC = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <Button>
-              <Icons.User className="mr-2 h-4 w-4 " />
-              <span>Account</span>
-            </Button>
+            <a href="../explore/billing">
             <Button>
               <Icons.Newspaper className="mr-2 h-4 w-4" />
               <span>Subscriptions</span>
             </Button>
+            </a>
           </div>
         </div>
       </Card>
