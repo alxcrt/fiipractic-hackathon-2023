@@ -7,6 +7,7 @@ import ThemeToggle from "./theme-toggle";
 // import ProfilePicture from "./profile-picture";
 import { useSession } from "next-auth/react";
 import ProfilePicture from "./profile-picture";
+import Streak from "./streak";
 
 const NavBar = () => {
   // const session = await getServerSession();
@@ -44,16 +45,18 @@ const NavBar = () => {
 
           {session ? (
             <>
-              {/* <Link
+              <Link
                 className={buttonVariants({ variant: "ghost" })}
-                href="/dashboard"
+                href="/explore"
               >
-                Dashboard
-              </Link> */}
+                Explore
+              </Link>
+
+              <Streak />
 
               <ProfilePicture />
 
-              <SignOutButton />
+              {/* <SignOutButton /> */}
             </>
           ) : (
             <>

@@ -26,9 +26,15 @@ import { ThemeProvider } from "@mui/material/styles";
 import { data } from "../../makeData";
 import { useTheme } from "next-themes";
 import { createTheme } from "@mui/material/styles";
+import { api } from "~/utils/api";
 
 const LeaderBoard = () => {
+  const { data: users, isLoading } = api.user.getAll.useQuery();
+
+  console.log(users);
+
   const { theme, setTheme } = useTheme();
+
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -47,7 +53,7 @@ const LeaderBoard = () => {
         id: "employee", //id used to define `group` column
         columns: [
           {
-            accessorFn: (row) => `${row.firstName} ${row.lastName}`, //accessorFn used to join multiple data into a single cell
+            accessorFn: (row: any) => `${row.name}`, //accessorFn used to join multiple data into a single cell
             id: "name", //id is still required when using accessorFn instead of accessorKey
             header: "Name",
             size: 250,
@@ -62,9 +68,10 @@ const LeaderBoard = () => {
                 <Link href="/profile/">
                   <img
                     alt="avatar"
-                    height={30}
+                    width={128}
+                    height={128}
                     className="select-none"
-                    src={row.original.avatar}
+                    src={row.original.image}
                     loading="lazy"
                     style={{ borderRadius: "50%" }}
                   />
@@ -79,43 +86,44 @@ const LeaderBoard = () => {
       {
         id: "id",
         columns: [
-          {
-            accessorKey: "salary",
-            // filterVariant: 'range', //if not using filter modes feature, use this instead of filterFn
-            filterFn: "between",
-            header: "HR POINTS",
-            size: 200,
-            //custom conditional format and styling
-            Cell: ({ cell }) => (
-              <Box
-                component="span"
-                sx={(theme) => ({
-                  backgroundColor:
-                    cell.getValue() < 50_000
-                      ? theme.palette.error.dark
-                      : cell.getValue() >= 50_000 && cell.getValue() < 75_000
-                      ? theme.palette.warning.dark
-                      : theme.palette.success.dark,
-                  borderRadius: "0.25rem",
-                  color: "#fff",
-                  maxWidth: "9ch",
-                  p: "0.25rem",
-                })}
-              >
-                {cell.getValue()?.toLocaleString?.("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 0,
-                })}
-              </Box>
-            ),
-          },
-          {
-            accessorKey: "jobTitle", //hey a simple column for once
-            header: "Job Title",
-            size: 350,
-          },
+          // {
+          //   accessorKey: "salary",
+          //   // filterVariant: 'range', //if not using filter modes feature, use this instead of filterFn
+          //   filterFn: "between",
+          //   header: "HR POINTS",
+          //   size: 200,
+          //   //custom conditional format and styling
+          //   Cell: ({ cell }) => (
+          //     <Box
+          //       component="span"
+          //       sx={(theme) => ({
+          //         // backgroundColor:
+          //         //   cell.getValue() < 50_000
+          //         //     ? theme.palette.error.dark
+          //         //     : cell.getValue() >= 50_000 && cell.getValue() < 75_000
+          //         //     ? theme.palette.warning.dark
+          //         //     : theme.palette.success.dark,
+          //         borderRadius: "0.25rem",
+          //         color: "#fff",
+          //         maxWidth: "9ch",
+          //         p: "0.25rem",
+          //       })}
+          //     >
+          //       {/* {cell.getValue()?.toLocaleString?.("en-US", {
+          //         style: "currency",
+          //         currency: "USD",
+          //         minimumFractionDigits: 0,
+          //         maximumFractionDigits: 0,
+          //       })} */}
+          //       123
+          //     </Box>
+          //   ),
+          // },
+          // {
+          //   accessorKey: "jobTitle", //hey a simple column for once
+          //   header: "Job Title",
+          //   size: 350,
+          // },
         ],
       },
     ],
@@ -126,7 +134,7 @@ const LeaderBoard = () => {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <MaterialReactTable
         columns={columns}
-        data={data}
+        data={users || []}
         enableColumnFilterModes
         enableColumnOrdering
         enableGrouping

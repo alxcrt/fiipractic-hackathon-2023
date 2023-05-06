@@ -9,7 +9,7 @@ const SignInButton: FC = () => {
   const signInWithGithub = async () => {
     try {
       setIsLoading(true);
-      await signIn("github");
+      await signIn();
     } catch (e) {
       toast.error("Error signing in");
     }

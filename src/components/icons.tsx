@@ -20,6 +20,7 @@ import {
   PhoneOff,
   Send,
   MessageSquare,
+  Flame,
 } from "lucide-react";
 
 export const Icons = {
@@ -44,6 +45,7 @@ export const Icons = {
   PhoneOff,
   Send,
   MessageSquare,
+  Flame,
 };
 
 export default Icons;
