@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 
-import styles from './code-highlighting.module.css';
 import Problem1 from '~/components/codingProblems/problem1';
-
-
 
 interface Language {
     name: string;
@@ -27,6 +24,7 @@ const JdoodlePage = () => {
     const [selectedLanguage, setSelectedLanguage] = useState<Language>(
         defaultLanguage
     );
+    const [remainingTime, setRemainingTime] = useState(0); // start from 0 and count up to infinity
 
     useEffect(() => {
         if (typeof languageCode === 'string') {
@@ -37,9 +35,36 @@ const JdoodlePage = () => {
         }
     }, [languageCode]);
 
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setRemainingTime((prevTime) => {
+                return prevTime + 1; // increment the prevTime by 1
+            });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    const handleSubmit = () => {
+        console.log(remainingTime);
+    };
+
     return (
         <div className="flex p-8">
-            <Problem1 />
+            <div className="w-1/2 flex flex-col justify-between">
+                <div className="text-lg font-bold mb-2 px-10">
+                    Elapsed Time: {remainingTime} seconds
+                </div>
+                <Problem1 />
+                <div className="mt-8 flex justify-center">
+                    <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={handleSubmit}
+                    >
+                        Submit
+                    </button>
+                </div>
+            </div>
             <Script
                 src="https://www.jdoodle.com/assets/jdoodle-pym.min.js"
                 type="text/javascript"
@@ -54,7 +79,6 @@ const JdoodlePage = () => {
             ></div>
         </div>
     );
-
 };
 
 export default JdoodlePage;
