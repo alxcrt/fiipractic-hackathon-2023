@@ -1,6 +1,7 @@
 import { Link } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { FC, useEffect, useState } from "react";
+import BadgesCard from "~/components/badges_card";
 import GithubRepos from "~/components/github_repos";
 import Icons from "~/components/icons";
 import { Badge } from "~/components/ui/badge";
@@ -150,6 +151,7 @@ const Profile: FC = () => {
           </div>
         ))}
       </Card>
+      <BadgesCard />
       <GithubRepos />
 
       {/* <Card className="w-[600px] dark:bg-gray-800">
