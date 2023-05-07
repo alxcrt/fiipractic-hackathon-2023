@@ -9,15 +9,36 @@ import { useSession } from "next-auth/react";
 import ProfilePicture from "./profile-picture";
 import Streak from "./streak";
 
+import Image from "next/image"; // Add this import
+import { useTheme } from "next-themes";
+
+
+
 const NavBar = () => {
   // const session = await getServerSession();
   const { data: session } = useSession();
 
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="container fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between bg-slate-50 px-4 py-4 backdrop-blur-sm dark:bg-slate-900/75 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between border-b border-slate-300 py-4 dark:border-slate-700">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between border-b border-slate-300 py-2 dark:border-slate-700">
         <Link href="/" className=" items-center space-x-2 md:flex">
-          <span className="font-bold sm:inline-block">Hackathon</span>
+          {theme === "light" ? <Image
+            src="/logo2.png"
+            alt="Hackathon Logo"
+            width={200}
+            height={200}
+            className="inline-block"
+          /> : <Image
+            src="/logo-dark2.png"
+            alt="Hackathon Logo"
+            width={200}
+            height={200}
+            className="inline-block"
+          />
+          }
+
         </Link>
 
         {/* <div className="flex-1 flex items-center  justify-start">
