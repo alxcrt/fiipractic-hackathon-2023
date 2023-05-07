@@ -2,37 +2,40 @@ import { useEffect, useState } from 'react';
 
 const QuizPage = () => {
     const question = 'What does the acronym "API" stand for?';
-    const correctAnswer = 'Application Programming Interface';
+    const correctAnswers = ['Application Programming Interface'];
     const incorrectAnswers = [
         'Advanced Packet Inspection',
         'Artificial Programming Intelligence',
         'Application Performance Index',
     ];
 
-    const answers = [...incorrectAnswers, correctAnswer];
+
+    const answers = [...incorrectAnswers, ...correctAnswers];
 
     useEffect(() => {
         console.log('cca');
     }, []);
 
-    const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-    const [attempts, setAttempts] = useState(2);
+    const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleAnswer = (answer: string) => {
-        if (attempts > 0) {
-            if (answer === correctAnswer) {
-                console.log('correct');
+        setSelectedAnswers((prevSelectedAnswers) => {
+            if (prevSelectedAnswers.includes(answer)) {
+                return prevSelectedAnswers.filter((a) => a !== answer);
             } else {
-                console.log('wrong');
+                return [...prevSelectedAnswers, answer];
             }
+        });
+    };
 
-            if (attempts === 1) {
-                setSelectedAnswer(null);
-                setAttempts(2);
-            } else {
-                setSelectedAnswer(answer);
-                setAttempts(attempts - 1);
-            }
+    const handleSubmit = () => {
+        setIsSubmitted(true);
+        if (selectedAnswers.length >= 1) {
+            const correctSelected = selectedAnswers.every((answer) =>
+                correctAnswers.includes(answer)
+            );
+            console.log(correctSelected ? '1' : '0');
         }
     };
 
@@ -44,10 +47,10 @@ const QuizPage = () => {
     ];
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex items-center justify-center min-h-auto mt-36">
             <div className="flex flex-col items-center justify-center h-96">
-                <div className="bg-white p-8 rounded-full shadow-md mb-12">
-                    <h1 className="text-2xl font-semibold mb-4">Programming Trivia</h1>
+                <div className="bg-white-500 dark:bg-blue-200 text-black dark:text-black  p-8 rounded-full shadow-xl mb-12 text-center">
+                    <h1 className="text-2xl font-semibold mb-4">Java Trivia</h1>
                     <p className="">{question}</p>
                 </div>
                 <ul className="flex flex-wrap justify-between items-center">
@@ -55,20 +58,22 @@ const QuizPage = () => {
                         <li key={index} className={`w-1/2 ${index % 2 === 0 ? 'pr-6' : 'pl-6'} my-2`}>
                             <button
                                 onClick={() => handleAnswer(answer)}
-                                className={`w-full h-40 ${answerColors[index]} text-white font-bold py-2 px-4 rounded-full ${selectedAnswer === answer ? 'opacity-50 cursor-not-allowed' : ''
+                                className={`w-full h-40 ${answerColors[index]} text-white font-bold py-2 px-4 rounded-full ${selectedAnswers.includes(answer) ? 'opacity-50 cursor-not-allowed' : ''
                                     }`}
-                                disabled={selectedAnswer === answer}
+                                disabled={isSubmitted}
                             >
                                 {answer}
                             </button>
                         </li>
                     ))}
                 </ul>
-                {selectedAnswer && (
-                    <div className="p-4 bg-white text-center rounded-b-lg mt-4">
-                        <p>Attempts remaining: {attempts}</p>
-                    </div>
-                )}
+                <button
+                    onClick={handleSubmit}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4"
+                    disabled={isSubmitted}
+                >
+                    Submit
+                </button>
             </div>
         </div>
     );
