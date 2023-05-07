@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import router, { useRouter } from 'next/router';
+
 
 const QuizPage = () => {
     const question = 'What does the acronym "API" stand for?';
@@ -37,6 +39,8 @@ const QuizPage = () => {
             );
             console.log(correctSelected ? '1' : '0');
         }
+        router.push('/explore');
+
     };
 
     const answerColors = [
