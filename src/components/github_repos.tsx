@@ -64,7 +64,7 @@ const GithubRepos: FC = () => {
                 "d-flex width-full flex-items-center position-relative"
               )[0].children[0] as HTMLAnchorElement
             ).href;
-            link = `https://github.com/\${link.substring(link.indexOf(data.login), link.length)}`;
+            link = `https://github.com/${link.substring(link.indexOf(data.login), link.length)}`;
           }
           const color: string = (
             item.getElementsByClassName("repo-language-color")[0] as HTMLElement
