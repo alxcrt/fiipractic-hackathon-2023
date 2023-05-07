@@ -12,9 +12,11 @@ const Billing: FC = ({}) => {
         text="Manage billing and your subscription plan."
       />
 
-      <BillingPlan />
+      <div className="mt-10">
+        <BillingPlan />
 
-      <ChooseRecruiterBillingPlan />
+        <ChooseRecruiterBillingPlan />
+      </div>
     </DashboardLayout>
   );
 };
