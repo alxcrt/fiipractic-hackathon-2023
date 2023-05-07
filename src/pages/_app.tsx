@@ -8,6 +8,7 @@ import "~/styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import Layout from "~/layout/Layout";
 import Script from "next/script";
+import { Toaster } from "react-hot-toast";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -18,6 +19,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <SessionProvider session={session}>
         <Layout>
           <Component {...pageProps} />
+          <Toaster position="top-right" reverseOrder={false} />
         </Layout>
       </SessionProvider>
     </ThemeProvider>
