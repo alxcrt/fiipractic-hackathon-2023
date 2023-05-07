@@ -70,7 +70,6 @@ const LabyrinthGame = ({handleFinishedGame}:{handleFinishedGame:any}) => {
                         } else if (Maze[newLineIndex]![newColIndex] == 2) {
                             console.log("YOU WON");
                             setIsGameFinished(true);
-                            await delay(2000);
                             handleFinishedGame();
                         }
                     }
@@ -86,7 +85,6 @@ const LabyrinthGame = ({handleFinishedGame}:{handleFinishedGame:any}) => {
                         } else if (Maze[newLineIndex]![newColIndex] == 2) {
                             console.log("YOU WON");
                             setIsGameFinished(true);
-                            await delay(2000);
                             handleFinishedGame();
                         }
                     }
@@ -102,7 +100,6 @@ const LabyrinthGame = ({handleFinishedGame}:{handleFinishedGame:any}) => {
                         } else if (Maze[newLineIndex]![newColIndex] == 2) {
                             console.log("YOU WON");
                             setIsGameFinished(true);
-                            await delay(2000);
                             handleFinishedGame();
                         }
                     }
@@ -118,7 +115,6 @@ const LabyrinthGame = ({handleFinishedGame}:{handleFinishedGame:any}) => {
                         } else if (Maze[newLineIndex]![newColIndex] == 2) {
                             console.log("YOU WON");
                             setIsGameFinished(true);
-                            await delay(2000);
                             handleFinishedGame();
                         }
                     }
@@ -177,7 +173,7 @@ const LabyrinthGame = ({handleFinishedGame}:{handleFinishedGame:any}) => {
     useEventListener('keydown', handler);
 
     return (
-        <div>
+        <div className="mt-[20px]">
             <div className="relative border-4">
                 {isGameFinished
                     ? <div className="flex align-center justify-center h-[600px] w-[600px]"><h1 className="m-auto text-3xl font-extrabold leading-none tracking-tight text-green-600 dark:text-green-400">Congrats! You won!</h1></div>
