@@ -3,6 +3,8 @@ import LabyrinthGame from "~/components/labyrinth-game";
 import ClickingGame from "~/components/clicking-game";
 import { CountdownCircleTimer, Props } from "react-countdown-circle-timer";
 import { Button } from "~/components/ui/button";
+import { useRouter } from 'next/router';
+
 
 const TimeEstimationGame: FC = ({ }) => {
     let [gameNumber, setGameNumber] = useState<number>(0);
@@ -15,6 +17,8 @@ const TimeEstimationGame: FC = ({ }) => {
     const [isPlaying, setIsPlaying] = useState<boolean>(true);
     const [firstEstimation, setFirstEstimation] = useState('');
     const [gameFinished, setGameFinished] = useState<boolean>(false);
+    const router = useRouter();
+
 
     const delay = (ms: any) => new Promise(res => setTimeout(res, ms));
 
@@ -72,6 +76,7 @@ const TimeEstimationGame: FC = ({ }) => {
         setIsGameNumberDisplayed(false);
         setIsStopwatchDisplayed(false);
         setIsGameDisplayed(false);
+        router.push("/explore");
     }
 
     return (
