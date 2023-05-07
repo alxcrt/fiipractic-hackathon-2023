@@ -84,41 +84,41 @@ const LeaderBoard = () => {
         ],
       },
       {
-        id: "id",
+        id: "level",
         columns: [
-          // {
-          //   accessorKey: "salary",
-          //   // filterVariant: 'range', //if not using filter modes feature, use this instead of filterFn
-          //   filterFn: "between",
-          //   header: "HR POINTS",
-          //   size: 200,
-          //   //custom conditional format and styling
-          //   Cell: ({ cell }) => (
-          //     <Box
-          //       component="span"
-          //       sx={(theme) => ({
-          //         // backgroundColor:
-          //         //   cell.getValue() < 50_000
-          //         //     ? theme.palette.error.dark
-          //         //     : cell.getValue() >= 50_000 && cell.getValue() < 75_000
-          //         //     ? theme.palette.warning.dark
-          //         //     : theme.palette.success.dark,
-          //         borderRadius: "0.25rem",
-          //         color: "#fff",
-          //         maxWidth: "9ch",
-          //         p: "0.25rem",
-          //       })}
-          //     >
-          //       {/* {cell.getValue()?.toLocaleString?.("en-US", {
-          //         style: "currency",
-          //         currency: "USD",
-          //         minimumFractionDigits: 0,
-          //         maximumFractionDigits: 0,
-          //       })} */}
-          //       123
-          //     </Box>
-          //   ),
-          // },
+          {
+            accessorKey: "level",
+            // filterVariant: 'range', //if not using filter modes feature, use this instead of filterFn
+            filterFn: "between",
+            header: "Level",
+            size: 200,
+            //custom conditional format and styling
+            Cell: ({ cell }) => (
+              <Box
+                component="span"
+                sx={(theme) => ({
+                  backgroundColor:
+                    cell.getValue() < 50_000
+                      ? theme.palette.error.dark
+                      : cell.getValue() >= 50_000 && cell.getValue() < 75_000
+                      ? theme.palette.warning.dark
+                      : theme.palette.success.dark,
+                  borderRadius: "0.25rem",
+                  color: "#fff",
+                  maxWidth: "9ch",
+                  p: "0.25rem",
+                })}
+              >
+                {/* {cell.getValue()?.toLocaleString?.("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0,
+                })} */}
+                {cell.getValue()}
+              </Box>
+            ),
+          },
           // {
           //   accessorKey: "jobTitle", //hey a simple column for once
           //   header: "Job Title",

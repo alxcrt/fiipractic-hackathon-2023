@@ -21,10 +21,7 @@ const EditProfile: FC = ({}) => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>
-            <Icons.User className="mr-2 h-4 w-4" />
-            Edit profile
-          </DialogTitle>
+          <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
             {"Make changes to your profile here. Click save when you're done."}
           </DialogDescription>
@@ -37,10 +34,10 @@ const EditProfile: FC = ({}) => {
             <Input id="name" value="Pedro Duarte" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
+            <Label htmlFor="phone" className="text-right">
+              Phone
             </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
+            <Input id="phone" value="0774686393" className="col-span-3" />
           </div>
         </div>
         <DialogFooter>

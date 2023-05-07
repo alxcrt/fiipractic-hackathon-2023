@@ -1,13 +1,16 @@
+import { UserRole } from "@prisma/client";
 import { Link } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { FC, useEffect, useState } from "react";
 import BadgesCard from "~/components/badges_card";
+import EditProfile from "~/components/edit-profile";
 import GithubRepos from "~/components/github_repos";
 import Icons from "~/components/icons";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card } from "~/components/ui/card";
 import { Progress } from "~/components/ui/progress";
+import WhatWeTest from "~/components/what-we-test";
 
 interface Achievement {
   src: string;
@@ -88,12 +91,18 @@ const Profile: FC = () => {
                 src={session?.user.image || ""}
                 alt=""
               />
-              <div className="animate-fade-in absolute bottom-0 left-0 flex h-6 w-6 items-center justify-center rounded-full  bg-gray-200 text-xs ring-4 ring-white dark:bg-gray-700 dark:ring-gray-800">
-                <Icons.Github className="h-4 w-4 stroke-current dark:text-white" />
-              </div>
-              <div className=" absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full  ">
-                <Badge className=" text-sm">Lvl.69</Badge>
-              </div>
+              {session?.user.role !== UserRole.RECRUITER && (
+                <>
+                  <div className="animate-fade-in absolute bottom-0 left-0 flex h-6 w-6 items-center justify-center rounded-full  bg-gray-200 text-xs ring-4 ring-white dark:bg-gray-700 dark:ring-gray-800">
+                    <Icons.Github className="h-4 w-4 stroke-current dark:text-white" />
+                  </div>
+                  <div className=" absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full  ">
+                    <Badge className=" text-sm">
+                      Lvl.{session?.user.level}
+                    </Badge>
+                  </div>
+                </>
+              )}
             </div>
 
             <div>
@@ -112,46 +121,56 @@ const Profile: FC = () => {
                 <span>Subscriptions</span>
               </Button>
             </a>
-          </div>
-        </div>
 
-        <div className=" mx-auto mt-2 w-[80%]">
-          <Progress value={90}></Progress>
-          <div className=" bottom-0 left-0 mt-1 flex w-full justify-between">
-            <span>7</span>
-            <span>8</span>
-          </div>
-          <div className="mt-2 flex justify-between">
-            <div>
-              <span className="font-bold">XP 768</span>/800
-            </div>
-            <div>
-              <span className="font-bold">32 XP</span> to next level
-            </div>
+            <EditProfile />
           </div>
         </div>
+        {session?.user.role !== UserRole.RECRUITER && (
+          <div className=" mx-auto mt-2 w-[80%]">
+            <Progress value={90}></Progress>
+            <div className=" bottom-0 left-0 mt-1 flex w-full justify-between">
+              <span>{session?.user.level}</span>
+              <span>{session?.user.level + 1}</span>
+            </div>
+            <div className="mt-2 flex justify-between">
+              <div>
+                <span className="font-bold">XP 768</span>/800
+              </div>
+              <div>
+                <span className="font-bold">32 XP</span> to next level
+              </div>
+            </div>
+          </div>
+        )}
       </Card>
 
-      <Card>
-        <div className="max-w-md justify-between  border-gray-200 p-2 dark:border-gray-700 ">
-          <p className="align-middle font-medium text-gray-400">
-            {session ? "Github Achievements" : ""}
-          </p>
-        </div>
-        {achievements.map((item) => (
-          <div className="flex items-center justify-start" key={item.src}>
-            <img
-              className="m-2 inline-flex aspect-square w-7 rounded-full bg-gray-600"
-              src={item.src || ""}
-              alt=""
-            />
-            <p className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text p-2 text-lg font-bold text-transparent">
-              {item.alt || ""}
-            </p>
-          </div>
-        ))}
-      </Card>
-      <BadgesCard />
+      {session?.user.role !== UserRole.RECRUITER && (
+        <>
+          <WhatWeTest name={session?.user.name} />
+          <BadgesCard />
+
+          <Card>
+            <div className="max-w-md justify-between  border-gray-200 p-2 dark:border-gray-700 ">
+              <p className="align-middle font-medium text-gray-400">
+                {session ? "Github Achievements" : ""}
+              </p>
+            </div>
+            {achievements.map((item) => (
+              <div className="flex items-center justify-start" key={item.src}>
+                <img
+                  className="m-2 inline-flex aspect-square w-7 rounded-full bg-gray-600"
+                  src={item.src || ""}
+                  alt=""
+                />
+                <p className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text p-2 text-lg font-bold text-transparent">
+                  {item.alt || ""}
+                </p>
+              </div>
+            ))}
+          </Card>
+        </>
+      )}
+
       <GithubRepos />
 
       {/* <Card className="w-[600px] dark:bg-gray-800">

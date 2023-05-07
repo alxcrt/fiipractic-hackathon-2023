@@ -6,8 +6,10 @@ import { api } from "~/utils/api";
 import { Button } from "~/components/ui/button";
 import Image from "next/image";
 import Script from "next/script";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const router = useRouter();
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   return (
@@ -24,7 +26,7 @@ const Home: NextPage = () => {
             shortlist quality talent, real fast! `}
           </p>
 
-          <Button>
+          <Button onClick={() => void router.push("/explore")}>
             <span>Get Started</span>
           </Button>
 

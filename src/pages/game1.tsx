@@ -33,12 +33,28 @@ const Game: FC = ({}) => {
       });
 
       // draw a circle relative to thhe number of pumps
+      // ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // ctx.beginPath();
+      // ctx.arc(300, 300, 20 + pumps * 5, 0, 2 * Math.PI, true);
+      // ctx.fillStyle = "#FEB5D8";
+      // // add a stroke
+      // ctx.fill();
+
+      // draw a image of a baloon instead of a circle
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
-      ctx.arc(300, 300, 20 + pumps * 5, 0, 2 * Math.PI, true);
-      ctx.fillStyle = "#FEB5D8";
-      // add a stroke
-      ctx.fill();
+      const img = new Image();
+      img.src = "/baloon.png";
+      img.onload = () => {
+        // ctx.drawImage(img, 300, 300, 40 + pumps * 5, 40 + pumps * 5);
+        // center the baloon
+        ctx.drawImage(
+          img,
+          300 - (40 + pumps * 5) / 2,
+          350 - (40 + pumps * 5) / 2,
+          40 + pumps * 5,
+          40 + pumps * 5
+        );
+      };
     };
   }, [pumps]);
 
@@ -53,7 +69,7 @@ const Game: FC = ({}) => {
   const resetGame = () => {
     setPumps(0);
     setCurrentScore(0);
-    setPopAfter(Math.floor(Math.random() * 10) + 1);
+    setPopAfter(3 + Math.floor(Math.random() * 10) + 1);
     setCurrentBaloons(currentBaloons + 1);
   };
 
