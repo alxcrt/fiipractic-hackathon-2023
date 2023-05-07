@@ -47,6 +47,7 @@ const JdoodlePage = () => {
 
     const handleSubmit = () => {
         console.log(remainingTime);
+        router.push('/quiz');
     };
 
     return (
