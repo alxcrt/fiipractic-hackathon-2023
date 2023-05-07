@@ -12,6 +12,7 @@ const TimeEstimationGame: FC = ({ }) => {
     const [isGameNumberDisplayed, setIsGameNumberDisplayed] = useState<boolean>(false);
     const [isGameDisplayed, setIsGameDisplayed] = useState<boolean>(false);
     const [isEstimateTime1Displayed, setIsEstimateTime1Displayed] = useState<boolean>(false);
+    const [isPlaying, setIsPlaying] = useState<boolean>(true);
     const [firstEstimation, setFirstEstimation] = useState('');
     const [gameFinished, setGameFinished] = useState<boolean>(false);
 
@@ -34,8 +35,8 @@ const TimeEstimationGame: FC = ({ }) => {
 
     const Explanation1 = () => {
         return (
-            <div>
-                <p className="w-[70vw]">For the next part you will be shown a short challange for a few seconds. After the time ends, you will have to estimate in how many seconds you can solve it. After inputting the number, you will proceed to solving the challange.</p>
+            <div className="mx-auto w-[50%]">
+                <p>For the next part you will be shown a short challange for a few seconds. The controlls will be 'w' 'a' 's' 'd'. After the time ends, you will have to estimate in how many seconds you can solve it. After inputting the number, you will proceed to solving the challange.</p>
                 <p>Good luck!</p>
                 <Button className="mt-[20px]" onClick={previewChallenge1}>Start challange</Button>
             </div>
@@ -64,9 +65,10 @@ const TimeEstimationGame: FC = ({ }) => {
         )
     }
 
-    function handleFinishedGame() {
+    async function handleFinishedGame() {
+        setIsPlaying(false);
+        await delay(2000);
         setGameFinished(true);
-        console.log("GAME IS FINISHED");
         setIsGameNumberDisplayed(false);
         setIsStopwatchDisplayed(false);
         setIsGameDisplayed(false);
@@ -80,7 +82,7 @@ const TimeEstimationGame: FC = ({ }) => {
                         <h1 className="mb-4 mt-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white p">Game number: {gameNumber}</h1>
                     </div>}
                     {(isStopwatchDisplayed == true) && <CountdownCircleTimer
-                        isPlaying
+                        isPlaying={isPlaying}
                         size={180}
                         duration={stopwatchTime}
                         colors={['#004777', '#F7B801', '#A30000', '#A30000']}
