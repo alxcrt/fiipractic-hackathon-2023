@@ -11,6 +11,10 @@ import { FcCheckmark } from "react-icons/fc";
 import { useTheme } from "next-themes";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material/styles";
+import { api } from "~/utils/api";
+import { UserRole } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const bull = (
   <Box
@@ -22,7 +26,12 @@ const bull = (
 );
 
 const ChooseRecruiterBillingPlan = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
+
   const { theme, setTheme } = useTheme();
+
+  const { mutate, error } = api.user.updateRole.useMutation();
 
   const darkTheme = createTheme({
     palette: {
@@ -35,48 +44,61 @@ const ChooseRecruiterBillingPlan = () => {
     },
   });
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <div className="py-14border-2 h-auto w-auto rounded-lg border-blue-500 p-4 px-10 hover:outline-2 hover:outline-green-500">
-        <Card sx={{ minWidth: 275 }}>
-          <CardContent>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              Plan
-            </Typography>
-            <Typography variant="h5" component="div">
-              <span>Recruiter</span>
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              10$
-            </Typography>
-            <div className="flex space-x-2">
-              <FcCheckmark />
-              <Typography variant="body2">
-                You have acces to the leaderboard
-                <br />
+    session?.user.role !== UserRole.RECRUITER && (
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <div className="py-14border-2 h-auto w-auto rounded-lg border-blue-500 p-4 px-10 hover:outline-2 hover:outline-green-500">
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                Plan
               </Typography>
-            </div>
-            <div className="flex space-x-2">
-              <FcCheckmark />
-              <Typography variant="body2">
-                You can see all people, all badges, full acces to any feature
-                <br />
+              <Typography variant="h5" component="div">
+                <span>Recruiter</span>
               </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                10$
+              </Typography>
+              <div className="flex space-x-2">
+                <FcCheckmark />
+                <Typography variant="body2">
+                  You have acces to the leaderboard
+                  <br />
+                </Typography>
+              </div>
+              <div className="flex space-x-2">
+                <FcCheckmark />
+                <Typography variant="body2">
+                  You can see all people, all badges, full acces to any feature
+                  <br />
+                </Typography>
+              </div>
+            </CardContent>
+            <div className="">
+              <div className="flex justify-end ">
+                <Button
+                  variant="outlined"
+                  size="small"
+                  className="mb-4 mr-4"
+                  onClick={() => {
+                    mutate({
+                      id: session?.user.id,
+                      role: UserRole.RECRUITER,
+                    });
+                    router.reload();
+                  }}
+                >
+                  Change Plan
+                </Button>
+              </div>
             </div>
-          </CardContent>
-          <div className="">
-            <div className="flex justify-end ">
-              <Button variant="outlined" size="small" className="mb-4 mr-4">
-                Change Plan
-              </Button>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </ThemeProvider>
+          </Card>
+        </div>
+      </ThemeProvider>
+    )
   );
 };
 

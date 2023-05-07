@@ -65,7 +65,7 @@ const LeaderBoard = () => {
                   gap: "1rem",
                 }}
               >
-                <Link href="/profile/">
+                <Link href={`/profile/${row.original.id}`}>
                   <img
                     alt="avatar"
                     width={128}
