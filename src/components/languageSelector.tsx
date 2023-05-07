@@ -1,5 +1,3 @@
-// components/LanguageSelector.tsx
-
 import React from 'react';
 import { useRouter } from 'next/router';
 
@@ -24,17 +22,21 @@ const LanguageSelector: React.FC = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen">
-            <div className="relative inline-block text-left">
-                <div>
-                    <select defaultValue="" onChange={handleLanguageChange} className="rounded-md bg-white text-gray-700 shadow-sm px-4 py-2 w-80">
-                        <option value="" disabled>Select a language</option>
-                        {languages.map(lang => (
-                            <option key={lang.code} value={lang.code}>{lang.name}</option>
-                        ))}
-                    </select>
-                </div>
-            </div>
+        <div className="flex justify-center items-center">
+            <select
+                defaultValue=""
+                onChange={handleLanguageChange}
+                className="w-96 h-30 rounded-md bg-white text-gray-700 shadow-lg px-6 py-4 text-2xl focus:outline-none"
+            >
+                <option value="" disabled>
+                    Select a language
+                </option>
+                {languages.map((lang) => (
+                    <option key={lang.code} value={lang.code}>
+                        {lang.name}
+                    </option>
+                ))}
+            </select>
         </div>
     );
 };

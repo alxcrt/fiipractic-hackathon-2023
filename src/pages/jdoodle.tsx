@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Script from 'next/script';
 
 import Problem1 from '~/components/codingProblems/problem1';
+import Stickman from '~/components/stickman';
 
 interface Language {
     name: string;
@@ -47,8 +48,14 @@ const JdoodlePage = () => {
 
     const handleSubmit = () => {
         console.log(remainingTime);
-        router.push('/quiz');
+        setProgress(1200);
+
+        setTimeout(() => {
+            router.push('/quiz');
+        }, 1500);
     };
+
+    const [progress, setProgress] = useState(0);
 
     return (
         <div className="flex p-8">
@@ -65,6 +72,7 @@ const JdoodlePage = () => {
                         Submit
                     </button>
                 </div>
+                <Stickman progress={progress} />
             </div>
             <Script
                 src="https://www.jdoodle.com/assets/jdoodle-pym.min.js"
@@ -78,6 +86,7 @@ const JdoodlePage = () => {
                 data-libs="mavenlib1, mavenlib2"
                 className="w-1/2 px-10"
             ></div>
+
         </div>
     );
 };
