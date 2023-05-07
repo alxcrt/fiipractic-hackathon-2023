@@ -9,7 +9,7 @@ const Streak: FC = () => {
       <HoverCard>
         <HoverCardTrigger className="flex items-center justify-center hover:cursor-pointer">
           <Icons.Flame />
-          <span className="ml-2">69</span>
+          <span className="ml-2">3</span>
         </HoverCardTrigger>
         <HoverCardContent>
           {"Solve today's Daily Challenge to refresh your streak!"}

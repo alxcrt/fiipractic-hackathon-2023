@@ -9,7 +9,7 @@ import DashboardLayout from "~/layout/DashboardLayout";
 
 const availableTests = [
   {
-    name: "HR Test",
+    name: "Behavioral Assessments Test",
     description: "A test to see if you're a good fit for the company.",
     image: "/hrr.webp",
     link: "/game1",

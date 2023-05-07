@@ -9,7 +9,13 @@ import {
 
 export const userRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.user.findMany();
+    // get all users with role USER
+    return ctx.prisma.user.findMany({
+      where: {
+        role: UserRole.USER,
+      },
+    });
+    // return ctx.prisma.user.findMany();
   }),
 
   getById: publicProcedure

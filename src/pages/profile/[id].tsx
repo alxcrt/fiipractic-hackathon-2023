@@ -1,13 +1,16 @@
+import { UserRole } from "@prisma/client";
 import { Link } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
+import BadgesCard from "~/components/badges_card";
 import GithubRepos from "~/components/github_repos";
 import Icons from "~/components/icons";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card } from "~/components/ui/card";
 import { Progress } from "~/components/ui/progress";
+import WhatWeTest from "~/components/what-we-test";
 import { api } from "~/utils/api";
 
 interface Achievement {
@@ -25,6 +28,7 @@ interface AchievementData {
 
 const Profile: FC = () => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const { data: user } = api.user.getById.useQuery(
     { id: router.query.id as string },
@@ -102,34 +106,34 @@ const Profile: FC = () => {
                 <Icons.Github className="h-4 w-4 stroke-current dark:text-white" />
               </div>
               <div className=" absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full  ">
-                <Badge className=" text-sm">Lvl.69</Badge>
+                <Badge className=" text-sm">Lvl.{user?.level}</Badge>
               </div>
             </div>
 
-            <div>
-              <p className="font-medium text-gray-400">Welcome back,</p>
+            <div className="mt-5">
+              {/* <p className="font-medium text-gray-400">Welcome back,</p> */}
               <p className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-2xl font-bold text-transparent">
                 {user?.name}
               </p>
-              <p className="font-medium text-gray-400">You look nice today!</p>
+              {/* <p className="font-medium text-gray-400">You look nice today!</p> */}
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          {/* <div className="flex flex-col gap-2">
             <a href="../explore/billing">
               <Button>
                 <Icons.Newspaper className="mr-2 h-4 w-4" />
                 <span>Subscriptions</span>
               </Button>
             </a>
-          </div>
+          </div> */}
         </div>
 
         <div className=" mx-auto mt-2 w-[80%]">
           <Progress value={90}></Progress>
           <div className=" bottom-0 left-0 mt-1 flex w-full justify-between">
-            <span>7</span>
-            <span>8</span>
+            <span>{user?.level}</span>
+            <span>{user?.level + 1}</span>
           </div>
           <div className="mt-2 flex justify-between">
             <div>
@@ -141,6 +145,12 @@ const Profile: FC = () => {
           </div>
         </div>
       </Card>
+
+      {session?.user.role === UserRole.RECRUITER && (
+        <WhatWeTest name={user?.name} />
+      )}
+
+      <BadgesCard />
 
       <Card>
         <div className="max-w-md justify-between  border-gray-200 p-2 dark:border-gray-700 ">
@@ -161,6 +171,7 @@ const Profile: FC = () => {
           </div>
         ))}
       </Card>
+
       <GithubRepos />
 
       {/* <Card className="w-[600px] dark:bg-gray-800">
