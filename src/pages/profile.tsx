@@ -171,7 +171,8 @@ const Profile: FC = () => {
         </>
       )}
 
-      <GithubRepos />
+      {session?.user.role !== UserRole.RECRUITER && (
+        <GithubRepos />)}
 
       {/* <Card className="w-[600px] dark:bg-gray-800">
         <div className="flex flex-row items-center justify-between  border-gray-200 p-6 dark:border-gray-700 ">
