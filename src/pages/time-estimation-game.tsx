@@ -36,7 +36,7 @@ const TimeEstimationGame: FC = ({ }) => {
     const Explanation1 = () => {
         return (
             <div className="mx-auto w-[50%]">
-                <p>For the next part you will be shown a short challange for a few seconds. After the time ends, you will have to estimate in how many seconds you can solve it. After inputting the number, you will proceed to solving the challange.</p>
+                <p>For the next part you will be shown a short challange for a few seconds. The controlls will be 'w' 'a' 's' 'd'. After the time ends, you will have to estimate in how many seconds you can solve it. After inputting the number, you will proceed to solving the challange.</p>
                 <p>Good luck!</p>
                 <Button className="mt-[20px]" onClick={previewChallenge1}>Start challange</Button>
             </div>
