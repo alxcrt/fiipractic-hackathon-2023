@@ -84,7 +84,7 @@ Recrutex offers two types of subscriptions:
 
 ## Technologies used
 
-| T3 Stack | Official Website | Logo |
+| <a href="https://create.t3.gg/">T3 Stack</a> | Official Website | Logo |
 | --- | --- | --- |
 | Next.js | [Website](https://nextjs.org/) | <img src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,q_auto:good/v1/gcs/platform-data-dsc/events/nextjs-boilerplate-logo.png" width="70"/> |
 | TypeScript | [Website](https://www.typescriptlang.org/) | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" width="70"/> |
@@ -99,8 +99,26 @@ Recrutex offers two types of subscriptions:
 
 ## Team Members
 
-* [Alexandru Cretu](https://github.com/alxcrt)
-* [Frențescu Cezar](https://github.com/FrentescuCezar)
-* [Enascuță Răzvan](https://github.com/EnascutaRazvan)
-* [Iftimoaia Razvan](https://github.com/Ifty18)
-* [Calcan Alexandru](https://github.com/atcalcan)
+<div align="center">
+  <table>
+    <tr>
+      <td align="left" valign="middle">
+        <ul>
+          <li><a href="https://github.com/FrentescuCezar">Frențescu Cezar</a></li>
+          <li><a href="https://github.com/alxcrt">Alexandru Cretu</a></li>
+          <li><a href="https://github.com/Ifty18">Iftimoaia Razvan</a></li>
+          <li><a href="https://github.com/EnascutaRazvan">Enascuță Răzvan</a></li>
+          <li><a href="https://github.com/atcalcan">Calcan Alexandru</a></li>
+        </ul>
+      </td>
+      <td align="left" valign="middle">
+        <img src="https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Team.png" width="700" title="Team">
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+
