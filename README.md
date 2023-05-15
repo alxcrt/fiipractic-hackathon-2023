@@ -112,7 +112,7 @@ Recrutex offers two types of subscriptions:
         </ul>
       </td>
       <td align="left" valign="middle">
-        <img src="https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Team.png" width="700" title="Team">
+        <img src="https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Team.png" width="600" title="Team">
       </td>
     </tr>
   </table>
