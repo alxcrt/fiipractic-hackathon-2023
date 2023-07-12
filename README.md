@@ -1,8 +1,8 @@
 # FIIPractic Hackathon 2023 - Gamifying Recruitment
 <p align="center">
-  <a href="https://fiipractic.asii.ro/"><img src="https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/FiiPractic_Logo_Cropped.png" width="350" title="FIIPractic"></a>
+  <a href="https://fiipractic.asii.ro/"><img src="https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/FiiPractic_Logo_Cropped.png" width="350" title="FIIPractic"></a>
   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-  <a href="https://bytex.net/"><img src="https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Bytex_Logo_Cropped.png" width="250" title="Bytex"></a>
+  <a href="https://bytex.net/"><img src="https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Bytex_Logo_Cropped.png" width="250" title="Bytex"></a>
 </p>
 
 <ins>**Recrutex**</ins> is a web-based platform that aims to revolutionize the recruitment process by gamifying behavioral and coding assessments. It was developed in 24 hours, during the <a href="https://fiipractic.asii.ro/">FIIPractic</a> Hackathon 2023, hosted by <a href="https://bytex.net/">Bytex</a> and <a href="https://www.asii.ro/">ASII</a>. Our team succeeded to get the #1 place 🏆.    
@@ -21,7 +21,7 @@ Recrutex offers a unique blend of games designed to evaluate a player's behavior
 
 | Behavioral and Coding tests |
 | :---: |
-| <img src="https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Screenshots/Assessments.jpg" width="600"> |
+| <img src="https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Assessments.jpg" width="600"> |
 
 </div>
 
@@ -37,7 +37,7 @@ These behavioral assessments can be replayed after a certain period, offering us
 
 | The Balloon Game                                                                                              | The Maze Game                                                                                             |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| ![](https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Screenshots/Balloon.png) | ![](https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Screenshots/Maze.png) |
+| ![](https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Balloon.png) | ![](https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Maze.png) |
 
 
 
@@ -56,7 +56,7 @@ These coding tests can be taken daily.
 
 | Problem Solving                                                                                              | Trivia Quizzes                                                                                             |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| ![](https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Screenshots/Compiler.png) | ![](https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Screenshots/Trivia.png) |
+| ![](https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Compiler.png) | ![](https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Trivia.png) |
 
 <br />
 <br />
@@ -67,7 +67,7 @@ Recruiters have access to a leaderboard of users and their profiles, which showc
 
 | Leaderboard                                                                                              | Profile                                                                                         |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| ![](https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Screenshots/Leaderboard.png) | ![](https://github.com/FrentescuCezar/fiipractic-hackathon-2023/blob/main/public/Screenshots/Profile.png) |
+| ![](https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Leaderboard.png) | ![](https://github.com/alxcrt/fiipractic-hackathon-2023/blob/main/public/Screenshots/Profile.png) |
 
 <br />
 
@@ -104,7 +104,7 @@ Recrutex offers two types of subscriptions:
     <tr>
       <td align="left" valign="middle">
         <ul>
-          <li><a href="https://github.com/FrentescuCezar">Frențescu Cezar</a></li>
+          <li><a href="https://github.com/alxcrt">Frențescu Cezar</a></li>
           <li><a href="https://github.com/alxcrt">Alexandru Cretu</a></li>
           <li><a href="https://github.com/Ifty18">Iftimoaia Razvan</a></li>
           <li><a href="https://github.com/EnascutaRazvan">Enascuță Răzvan</a></li>
